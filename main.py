@@ -49,7 +49,7 @@ mc = MonteCarlo(pose, score_function, 1.0)
 output_dir = "output_decoys"
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
-    
+
 # Placeholder variables to keep track of the best score and its iteration
 best_score = float('inf')
 best_iteration = -1
