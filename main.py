@@ -74,8 +74,8 @@ for i in range(10):
             best_iteration = i
 
     # Save the decoy every 200,000th iteration
-    # if (i + 1) % 200_000 == 0:
-        # pose.dump_pdb(os.path.join(output_dir, f"decoy_{(i+1)//200_000}.pdb"))
+    if (i + 1) % 200_000 == 0:
+        pose.dump_pdb(os.path.join(output_dir, f"decoy_{(i+1)//200_000}.pdb"))
         pose.dump_pdb(os.path.join(output_dir, f"decoy_{i+1}.pdb"))
 
 # Save the best-scoring pose
