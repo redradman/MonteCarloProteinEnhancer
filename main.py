@@ -49,3 +49,35 @@ mc = MonteCarlo(pose, score_function, 1.0)
 output_dir = "output_decoys"
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
+    
+# Placeholder variables to keep track of the best score and its iteration
+best_score = float('inf')
+best_iteration = -1
+
+# Simulation
+for i in range(10):
+    pose = original_pose.clone()
+
+    # Inner loop for perturbations and optimizations
+    for _ in range(10):
+        small_mover.apply(pose)
+        shear_mover.apply(pose)
+        rotamer_trials.apply(pose)
+        packer.apply(pose)
+        min_mover.apply(pose)
+        accepted = mc.boltzmann(pose)
+        
+        # Update the best score and iteration if needed
+        current_score = score_function(pose)
+        if current_score < best_score:
+            best_score = current_score
+            best_iteration = i
+
+    # Save the decoy every 200,000th iteration
+    # if (i + 1) % 200_000 == 0:
+        # pose.dump_pdb(os.path.join(output_dir, f"decoy_{(i+1)//200_000}.pdb"))
+        pose.dump_pdb(os.path.join(output_dir, f"decoy_{i+1}.pdb"))
+
+# Save the best-scoring pose
+best_pose = mc.lowest_score_pose()
+best_pose.dump_pdb(os.path.join(output_dir, f"best_decoy_at_iteration_{best_iteration}.pdb"))
