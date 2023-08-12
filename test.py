@@ -46,7 +46,7 @@ min_mover.movemap(movemap)
 mc = MonteCarlo(pose, score_function, 1.0)
 
 # Define output directory
-output_dir = "output_decoys"
+output_dir = "/scratch/st-shallam-1/iGEM/monte-carlo"
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
 
