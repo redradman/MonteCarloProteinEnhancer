@@ -30,3 +30,22 @@ task_factory.push_back(IncludeCurrent())
 task_factory.push_back(RestrictToRepacking())
 packer_task = task_factory.create_task_and_apply_taskoperations(pose)
 rotamer_trials = RotamerTrialsMover(score_function, packer_task)
+
+# PackRotamersMover for repacking
+packer = PackRotamersMover(score_function, packer_task)
+
+# Set up MinMover for energy minimization
+movemap = MoveMap()
+movemap.set_bb(True)
+movemap.set_chi(True)
+min_mover = MinMover()
+min_mover.score_function(score_function)
+min_mover.movemap(movemap)
+
+# Set up MonteCarlo object with the desired temperature
+mc = MonteCarlo(pose, score_function, 1.0)
+
+# Define output directory
+output_dir = "output_decoys"
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
