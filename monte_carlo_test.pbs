@@ -1,5 +1,5 @@
 #!/bin/bash
- 
+
 #PBS -l walltime=1:00:00,select=1:ncpus=1:mem=2gb
 #PBS -N monte_carlo_protein
 #PBS -A st-shallam-1
@@ -7,21 +7,23 @@
 #PBS -M rdmnr@student.ubc.ca
 #PBS -o output.txt
 #PBS -e error.txt
- 
+
 ################################################################################
- 
+
 module load gcc/9.4.0
-module load python/3.8.10 
+module load python/3.8.10
 module load py-virtualenv/16.7.6
- 
-cd $PBS_O_WORKDIR
 
-PATH_TO_VENV = /arc/project/st-shallam-1/iGEM/monte-carlo/mcenv/bin/activate
+# cd $PBS_O_WORKDIR
+pwd
 
-OUTPUT_DIRECTORY = /scratch/st-shallam-1/iGEM/monte-carlo
+PATH_TO_VENV=/scratch/st-shallam-1/iGEM/monte-carlo/dependency/mcenv/bin/activate
+OUTPUT_DIRECTORY=/scratch/st-shallam-1/iGEM/monte-carlo
 
 # activating the env
 source PATH_TO_VENV
+
+# python3 test.py
 
 
 
