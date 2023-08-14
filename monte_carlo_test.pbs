@@ -16,7 +16,7 @@ module load py-virtualenv/16.7.6
 
 cd $PBS_O_WORKDIR
 
-PATH_TO_VENV=/arc/project/st-shallam-1/iGEM/monte-carlo/pyros/bin
+PATH_TO_VENV=/arc/project/st-shallam-1/iGEM/monte-carlo/pyros/bin/activate
 OUTPUT_DIRECTORY=/scratch/st-shallam-1/iGEM/monte-carlo
 
 # activating the env
