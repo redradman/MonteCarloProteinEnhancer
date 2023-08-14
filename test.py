@@ -12,9 +12,13 @@ from pyrosetta.rosetta.protocols.simple_moves import SmallMover, ShearMover
 # Initialize PyRosetta
 pyrosetta.init()
 
+print(os.getcwd())
+print(os.getcwd())
+
+
 # Load the protein pose
 pose = Pose()
-pyrosetta.rosetta.core.import_pose.pose_from_file(pose, "pdb_files/sample/1ubq.pdb")
+pyrosetta.rosetta.core.import_pose.pose_from_file(pose, "/scratch/st-shallam-1/iGEM/monte-carlo/MonteCarloProteinEnhancer/pdb_files/Sample/1ubq.pdb")
 original_pose = pose.clone()
 
 # Score Function
@@ -46,7 +50,7 @@ min_mover.movemap(movemap)
 mc = MonteCarlo(pose, score_function, 1.0)
 
 # Define output directory
-output_dir = "/scratch/st-shallam-1/iGEM/monte-carlo"
+output_dir = "/scratch/st-shallam-1/iGEM/monte-carlo/decoy_folder"
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
 
