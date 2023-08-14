@@ -14,16 +14,13 @@ module load gcc/9.4.0
 module load python/3.8.10
 module load py-virtualenv/16.7.6
 
-# cd $PBS_O_WORKDIR
-pwd
+cd $PBS_O_WORKDIR
 
-PATH_TO_VENV=/scratch/st-shallam-1/iGEM/monte-carlo/dependency/mcenv/bin/activate
+PATH_TO_VENV=/arc/project/st-shallam-1/iGEM/monte-carlo/pyros/bin
 OUTPUT_DIRECTORY=/scratch/st-shallam-1/iGEM/monte-carlo
 
 # activating the env
-source PATH_TO_VENV
+source $PATH_TO_VENV
 
-# python3 test.py
-
-
-
+pwd
+python3 test.py
