@@ -1,0 +1,26 @@
+#PBS -l walltime=1:00:00,select=1:ncpus=1:mem=2gb
+#PBS -N monte_carlo_protein
+#PBS -A st-shallam-1
+#PBS -m abe
+#PBS -J 1-3
+#PBS -M rdmnr@student.ubc.ca
+#PBS -o output_^array_index^.txt
+#PBS -e error_^array_index^.txt
+ 
+################################################################################
+ 
+module load gcc/9.4.0
+module load python
+module load py-virtualenv/16.7.6
+
+cd $PBS_O_WORKDIR
+echo "This is a job array sub-job with index value $PBS_ARRAY_INDEX"
+
+PATH_TO_VENV=/arc/project/st-shallam-1/iGEM/monte-carlo/pyros/bin/activate
+OUTPUT_DIRECTORY=/scratch/st-shallam-1/iGEM/monte-carlo
+
+# activating the env
+source $PATH_TO_VENV
+
+pwd
+python3 test_parallel.py $PBS_ARRAY_INDEX
