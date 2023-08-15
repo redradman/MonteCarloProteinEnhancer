@@ -16,7 +16,7 @@ print(os.getcwd())
 
 # Load the protein pose
 pose = Pose()
-pyrosetta.rosetta.core.import_pose.pose_from_file(pose, "pdb_files/sample/1ubq.pdb")
+pyrosetta.rosetta.core.import_pose.pose_from_file(pose, "pdb_files/dockedNrdj-1mCherry.pdb")
 original_pose = pose.clone()
 
 # Score Function
